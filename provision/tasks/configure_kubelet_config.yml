@@ -1,0 +1,24 @@
+---
+- name: config /etc/kubernetes/kubelet address
+  lineinfile:
+    path: /etc/kubernetes/kubelet
+    regexp: 'KUBELET_ADDRESS="--address=127\.0\.0\.1"'
+    line: 'KUBELET_ADDRESS="--address=0.0.0.0'
+
+- name: config /etc/kubernetes/kubelet port
+  lineinfile:
+    path: /etc/kubernetes/kubelet
+    regexp: '# KUBELET_PORT="--port=10250"'
+    line: 'KUBELET_PORT="--port=10250"'
+
+- name: config /etc/kubernetes/kubelet hostname
+  lineinfile:
+    path: /etc/kubernetes/kubelet
+    regexp: 'KUBELET_HOSTNAME="--hostname-override=127\.0\.0\.1"'
+    line: 'KUBELET_HOSTNAME="--hostname-override={{ inventory_hostname }}"'
+
+- name: config /etc/kubernetes/kubelet api_server
+  lineinfile:
+    path: /etc/kubernetes/kubelet
+    regexp: 'KUBELET_API_SERVER="--api-servers=http://127\.0\.0\.1:8080"'
+    line: 'KUBELET_API_SERVER="--api-servers=http://centos-master:8080"'

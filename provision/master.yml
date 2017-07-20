@@ -1,0 +1,17 @@
+---
+- hosts: master
+  become: yes
+  tasks:
+    # all hosts configure
+    - include: tasks/yum_update.yml
+    - include: tasks/install_components.yml
+    - include: tasks/add_hosts.yml
+    - include: tasks/configure_k8s_config.yml
+    - include: tasks/disable_selinux.yml
+    - include: tasks/disable_firewall.yml
+    # master configure
+    - include: tasks/configure_etcd_config.yml
+    - include: tasks/configure_k8s_apiserver_config.yml
+    - include: tasks/start_etcd.yml
+    - include: tasks/configure_flanneld_config.yml
+    - include: tasks/start_master_services.yml

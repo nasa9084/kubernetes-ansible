@@ -1,0 +1,12 @@
+---
+- name: configure /etc/etcd/etcd.conf listen_client_URLs
+  lineinfile:
+    path: /etc/etcd/etcd.conf
+    regexp: 'ETCD_LISTEN_CLIENT_URLS="http://localhost:2379"'
+    line: 'ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"'
+
+- name: configure /etc/etcd/etcd.conf advertise_client_URLs
+  lineinfile:
+    path: /etc/etcd/etcd.conf
+    regexp: 'ETCD_ADVERTISE_CLIENT_URLS="http://localhost:2379"'
+    line: 'ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"'

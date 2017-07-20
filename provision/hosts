@@ -1,0 +1,7 @@
+[master]
+centos-master
+
+[node]
+centos-minion-1
+centos-minion-2
+centos-minion-3

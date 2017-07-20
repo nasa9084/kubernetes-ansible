@@ -1,0 +1,24 @@
+---
+- name: config /etc/kubernetes/apiserver api_address
+  lineinfile:
+    path: /etc/kubernetes/apiserver
+    regexp: 'KUBE_API_ADDRESS="--insecure-bind-address=127\.0\.0\.1"'
+    line: 'KUBE_API_ADDRESS="--address=0.0.0.0"'
+
+- name: config /etc/kubernetes/apiserver api_port
+  lineinfile:
+    path: /etc/kubernetes/apiserver
+    regexp: '# KUBE_API_PORT="--port=8080"'
+    line: 'KUBE_API_PORT="--port=8080"'
+
+- name: config /etc/kubernetes/apiserver kubelet_port
+  lineinfile:
+    path: /etc/kubernetes/apiserver
+    regexp: '# KUBELET_PORT="--kubelet-port=10250"'
+    line: 'KUBELET_PORT="--kubelet-port=10250"'
+
+- name: config /etc/kubernetes/apiserver etcd_servers
+  lineinfile:
+    path: /etc/kubernetes/apiserver
+    regexp: 'KUBE_ETCD_SERVERS="--etcd-servers=http://127\.0\.0\.1:2379"'
+    line: 'KUBE_ETCD_SERVERS="--etcd-servers=http://centos-master:2379"'

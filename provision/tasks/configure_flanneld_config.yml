@@ -1,0 +1,12 @@
+---
+- name: config /etc/sysconfig/flanneld etcd_endpoints
+  lineinfile:
+    path: /etc/sysconfig/flanneld
+    regexp: 'FLANNEL_ETCD_ENDPOINTS="http://127\.0\.0\.1:2379"'
+    line: 'FLANNEL_ETCD_ENDPOINTS="http://centos-master:2379"'
+
+- name: config /etc/sysconfig/flanneld etcd_prefix
+  lineinfile:
+    path: /etc/sysconfig/flanneld
+    regexp: 'FLANNEL_ETCD_PREFIX="/atomic.io/network"'
+    line: 'FLANNEL_ETCD_PREFIX="/kube-centos/network"'

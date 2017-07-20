@@ -1,0 +1,14 @@
+---
+- name: start etcd
+  systemd:
+    name: etcd
+    state: started
+    enabled: yes
+
+- name: create network dir
+  command: etcdctl mkdir /kube-centos/network
+  ignore_errors: true
+
+- name: create network config
+  command: 'etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"'
+  ignore_errors: true

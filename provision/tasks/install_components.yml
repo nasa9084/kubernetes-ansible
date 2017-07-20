@@ -1,0 +1,16 @@
+---
+- name: install yum repository
+  yum_repository:
+    name: virt7-docker-common-release
+    description: docker common release
+    baseurl: http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+    gpgcheck: no
+
+- name: install components
+  yum:
+    name:
+      - kubernetes
+      - etcd
+      - flannel
+    state: present
+    enablerepo: virt7-docker-common-release

@@ -1,0 +1,6 @@
+---
+- name: configure /etc/kubernetes/config
+  lineinfile:
+    path: /etc/kubernetes/config
+    regexp: 'KUBE_MASTER="--master=http://127\.0\.0\.1:8080"'
+    line: 'KUBE_MASTER="--master=http://centos-master:8080"'

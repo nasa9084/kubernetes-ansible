@@ -1,0 +1,15 @@
+---
+- hosts: node
+  become: yes
+  tasks:
+    # all hosts configure
+    - include: tasks/yum_update.yml
+    - include: tasks/install_components.yml
+    - include: tasks/add_hosts.yml
+    - include: tasks/disable_selinux.yml
+    - include: tasks/disable_firewall.yml
+    - include: tasks/configure_k8s_config.yml
+    # node configure
+    - include: tasks/configure_kubelet_config.yml
+    - include: tasks/configure_flanneld_config.yml
+    - include: tasks/start_node_services.yml
